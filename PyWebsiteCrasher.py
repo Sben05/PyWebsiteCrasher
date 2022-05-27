@@ -8,7 +8,7 @@ import signal
 url = 'http://10.30.40.181/gv_shout'
 
 def handler(signum, frame):
-  print("Killing dos attack", end="", flush=True)
+  print("Killing attack", end="", flush=True)
   exit(1)
   
 def crasher():
