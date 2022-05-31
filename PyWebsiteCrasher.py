@@ -23,8 +23,8 @@ def useragent_list():
 	headers_useragents.append('Opera/9.80 (Windows NT 5.2; U; ru) Presto/2.5.22 Version/10.51')
 	return(headers_useragents)
 
-target = socket.gethostbyname(socket.gethostname()) 
-#target = "<URL HERE>"
+#target = socket.gethostbyname(socket.gethostname()) 
+target = "http://172.20.10.5/gv_shout/"
 ip = 'localhost' #change to mask id 
 port = 80
 print("http://151.30.04.1/")
